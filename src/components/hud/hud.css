@@ -1,0 +1,178 @@
+/* ═══════════════════════════════════════════════════════════════
+   Museum HUD Instrumentation Styling
+   ═══════════════════════════════════════════════════════════════ */
+
+.museum-hud-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: var(--z-hud);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--space-lg);
+  box-sizing: border-box;
+}
+
+/* ─── Top Telemetry Header ─── */
+.telemetry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  pointer-events: auto;
+}
+
+.telemetry-block {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.telemetry-institution {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-wide);
+  color: var(--text-primary);
+  text-transform: uppercase;
+}
+
+.telemetry-subline {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: var(--tracking-ultra);
+  color: var(--text-muted);
+}
+
+.telemetry-status {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: var(--tracking-wide);
+  color: var(--text-secondary);
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-nature);
+  box-shadow: 0 0 8px var(--accent-nature);
+  animation: pulse-dot 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* ─── Navigation Matrix (Bottom HUD) ─── */
+.navigation-matrix {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  pointer-events: auto;
+}
+
+.nav-sector-pills {
+  display: flex;
+  gap: 6px;
+  background: rgba(10, 14, 22, 0.7);
+  padding: 4px;
+  border: var(--border-subtle);
+  border-radius: var(--radius-sm);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.nav-sector-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: var(--tracking-wide);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  outline: none;
+  transition: color var(--duration-fast) var(--ease-snappy),
+              background-color var(--duration-fast) var(--ease-snappy);
+}
+
+.nav-sector-btn:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.nav-sector-btn.active {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ─── Audio Controller Widget ─── */
+.audio-controller {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(10, 14, 22, 0.7);
+  border: var(--border-subtle);
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: var(--tracking-wide);
+  backdrop-filter: blur(16px);
+  transition: border-color var(--duration-fast) var(--ease-snappy);
+}
+
+.audio-controller:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: var(--text-primary);
+}
+
+.audio-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 12px;
+}
+
+.audio-bar {
+  width: 2px;
+  height: 3px;
+  background: currentColor;
+  transition: height 0.2s ease;
+}
+
+.audio-bar.playing:nth-child(1) { animation: audio-bounce 0.8s ease-in-out infinite; }
+.audio-bar.playing:nth-child(2) { animation: audio-bounce 0.6s ease-in-out 0.2s infinite; }
+.audio-bar.playing:nth-child(3) { animation: audio-bounce 0.9s ease-in-out 0.4s infinite; }
+
+@keyframes audio-bounce {
+  0%, 100% { height: 3px; }
+  50% { height: 12px; }
+}
+
+/* ─── Responsive Adjustments ─── */
+@media (max-width: 768px) {
+  .museum-hud-container {
+    padding: var(--space-sm);
+  }
+  .nav-sector-pills {
+    flex-wrap: wrap;
+  }
+  .telemetry-institution {
+    font-size: 12px;
+  }
+}

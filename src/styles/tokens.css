@@ -1,0 +1,93 @@
+/* ═══════════════════════════════════════════════════════════════
+   THE MUSEUM OF POSSIBLE FUTURES — Design Token System
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ─── Environment Primaries ─── */
+  --void-black: #030407;
+  --atrium-dark: #07090e;
+  --panel-bg: rgba(10, 14, 22, 0.72);
+  --panel-border: rgba(255, 255, 255, 0.08);
+  --panel-hover: rgba(255, 255, 255, 0.14);
+
+  /* ─── Typography Colors ─── */
+  --text-primary: #f2f4f8;
+  --text-secondary: #8e95a5;
+  --text-muted: #4e5566;
+  --text-dim: #2b303d;
+
+  /* ─── Spectral Accents (emerge from content, never applied decoratively) ─── */
+  --accent-nature: #10b981;
+  --accent-ai: #8b5cf6;
+  --accent-space: #38bdf8;
+  --accent-culture: #f59e0b;
+  --accent-unknown: #ec4899;
+
+  /* ─── Spacing Scale ─── */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 40px;
+  --space-2xl: 64px;
+  --space-3xl: 96px;
+
+  /* ─── Typography ─── */
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --text-xs: 0.6875rem;
+  --text-sm: 0.8125rem;
+  --text-base: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.75rem;
+  --text-2xl: 2.5rem;
+  --text-3xl: 4rem;
+  --text-4xl: 6rem;
+
+  --leading-tight: 1.1;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.7;
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0em;
+  --tracking-wide: 0.08em;
+  --tracking-ultra: 0.2em;
+
+  /* ─── Borders & Radii ─── */
+  --border-subtle: 1px solid rgba(255, 255, 255, 0.06);
+  --border-interactive: 1px solid rgba(255, 255, 255, 0.12);
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+
+  /* ─── Opacity Scale ─── */
+  --opacity-ghost: 0.04;
+  --opacity-subtle: 0.08;
+  --opacity-muted: 0.25;
+  --opacity-medium: 0.5;
+  --opacity-strong: 0.85;
+
+  /* ─── Depth / Z-Index ─── */
+  --z-canvas: 0;
+  --z-hud: 100;
+  --z-overlay: 200;
+  --z-modal: 300;
+  --z-cursor: 9999;
+
+  /* ─── Motion ─── */
+  --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-snappy: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-organic: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --duration-instant: 100ms;
+  --duration-fast: 200ms;
+  --duration-normal: 400ms;
+  --duration-slow: 800ms;
+  --duration-cinematic: 1600ms;
+  --duration-dramatic: 3000ms;
+
+  /* ─── Cursor ─── */
+  --cursor-size: 8px;
+  --cursor-color: var(--text-secondary);
+}

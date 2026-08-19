@@ -1,0 +1,113 @@
+/* ═══════════════════════════════════════════════════════════════
+   Common Architectural UI Styles
+   ═══════════════════════════════════════════════════════════════ */
+
+.museum-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 12px 24px;
+  background: rgba(10, 14, 22, 0.6);
+  border: var(--border-interactive);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 400;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: border-color var(--duration-fast) var(--ease-snappy),
+              background-color var(--duration-fast) var(--ease-snappy),
+              transform var(--duration-fast) var(--ease-snappy);
+}
+
+.museum-button::before,
+.museum-button::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-color: var(--text-secondary);
+  opacity: 0.5;
+  transition: opacity var(--duration-fast) var(--ease-snappy),
+              transform var(--duration-fast) var(--ease-snappy);
+}
+
+.museum-button::before {
+  top: -1px;
+  left: -1px;
+  border-top: 1px solid currentColor;
+  border-left: 1px solid currentColor;
+}
+
+.museum-button::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 1px solid currentColor;
+  border-right: 1px solid currentColor;
+}
+
+.museum-button:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+}
+
+.museum-button:hover::before {
+  transform: translate(-2px, -2px);
+  opacity: 1;
+}
+
+.museum-button:hover::after {
+  transform: translate(2px, 2px);
+  opacity: 1;
+}
+
+.museum-button:active {
+  transform: scale(0.98);
+}
+
+.museum-button-primary {
+  background: rgba(242, 244, 248, 0.08);
+  border-color: rgba(242, 244, 248, 0.3);
+}
+
+.museum-button-primary:hover {
+  background: rgba(242, 244, 248, 0.16);
+  border-color: rgba(242, 244, 248, 0.6);
+}
+
+/* ─── Speculative Classification Label ─── */
+.speculative-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.speculative-label-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent-ai);
+}
+
+.speculative-label-dot[data-type='nature'] { background: var(--accent-nature); }
+.speculative-label-dot[data-type='space'] { background: var(--accent-space); }
+.speculative-label-dot[data-type='culture'] { background: var(--accent-culture); }
+.speculative-label-dot[data-type='unknown'] { background: var(--accent-unknown); }

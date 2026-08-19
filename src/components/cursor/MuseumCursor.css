@@ -1,0 +1,143 @@
+/* ═══════════════════════════════════════════════════════════════
+   MuseumCursor — Custom Interaction Instrument
+   
+   7 states: normal, interactive, inspect, enter, drag, zoom, anomaly
+   Hardware-accelerated with lerp trailing.
+   Respects reduced-motion by disabling trail.
+   Hidden on touch devices.
+   ═══════════════════════════════════════════════════════════════ */
+
+.museum-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--z-cursor);
+  pointer-events: none;
+  mix-blend-mode: difference;
+}
+
+.cursor-dot {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text-primary);
+  transform: translate(-50%, -50%);
+  transition: transform var(--duration-fast) var(--ease-snappy),
+              opacity var(--duration-fast) var(--ease-snappy);
+}
+
+.cursor-ring {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(242, 244, 248, 0.4);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width var(--duration-normal) var(--ease-snappy),
+              height var(--duration-normal) var(--ease-snappy),
+              border-color var(--duration-normal) var(--ease-snappy),
+              border-radius var(--duration-normal) var(--ease-snappy),
+              opacity var(--duration-normal) var(--ease-snappy);
+}
+
+/* ─── State: Interactive ─── */
+.cursor-ring[data-state='interactive'] {
+  width: 48px;
+  height: 48px;
+  border-color: rgba(242, 244, 248, 0.6);
+}
+
+/* ─── State: Inspect ─── */
+.cursor-ring[data-state='inspect'] {
+  width: 56px;
+  height: 56px;
+  border-color: rgba(139, 92, 246, 0.5);
+  border-radius: 4px;
+}
+
+/* ─── State: Enter ─── */
+.cursor-ring[data-state='enter'] {
+  width: 64px;
+  height: 64px;
+  border-color: rgba(242, 244, 248, 0.7);
+}
+
+.cursor-dot[data-state='enter'] {
+  transform: translate(-50%, -50%) scale(1.5);
+}
+
+/* ─── State: Drag ─── */
+.cursor-ring[data-state='drag'] {
+  width: 40px;
+  height: 24px;
+  border-radius: 12px;
+  border-color: rgba(242, 244, 248, 0.5);
+}
+
+/* ─── State: Zoom ─── */
+.cursor-ring[data-state='zoom'] {
+  width: 52px;
+  height: 52px;
+  border-style: dashed;
+  border-color: rgba(56, 189, 248, 0.4);
+}
+
+/* ─── State: Anomaly ─── */
+.cursor-ring[data-state='anomaly'] {
+  border-color: rgba(236, 72, 153, 0.6);
+  animation: cursor-glitch 0.3s steps(3) infinite;
+}
+
+.cursor-dot[data-state='anomaly'] {
+  animation: cursor-jitter 0.15s steps(2) infinite;
+}
+
+@keyframes cursor-glitch {
+  0% { transform: translate(-50%, -50%); }
+  33% { transform: translate(calc(-50% + 2px), calc(-50% - 1px)); }
+  66% { transform: translate(calc(-50% - 1px), calc(-50% + 2px)); }
+  100% { transform: translate(-50%, -50%); }
+}
+
+@keyframes cursor-jitter {
+  0% { transform: translate(-50%, -50%); }
+  50% { transform: translate(calc(-50% + 1px), calc(-50% - 1px)); }
+  100% { transform: translate(-50%, -50%); }
+}
+
+/* ─── Cursor Label (for inspect, enter states) ─── */
+.cursor-label {
+  position: absolute;
+  top: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(242, 244, 248, 0.5);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity var(--duration-fast) var(--ease-snappy);
+}
+
+.cursor-label[data-visible='true'] {
+  opacity: 1;
+}
+
+/* ─── Hide on touch devices ─── */
+@media (hover: none) and (pointer: coarse) {
+  .museum-cursor {
+    display: none;
+  }
+}
+
+/* ─── Reduced Motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  .cursor-ring[data-state='anomaly'],
+  .cursor-dot[data-state='anomaly'] {
+    animation: none;
+  }
+}

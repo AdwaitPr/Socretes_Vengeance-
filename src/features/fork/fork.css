@@ -1,0 +1,165 @@
+/* ═══════════════════════════════════════════════════════════════
+   Future Fork Simulation UI Styles
+   ═══════════════════════════════════════════════════════════════ */
+
+.fork-overlay-container {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-xl);
+  background: rgba(3, 4, 7, 0.88);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  animation: fork-fade-in 0.5s var(--ease-cinematic);
+  overflow-y: auto;
+}
+
+@keyframes fork-fade-in {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.fork-content-wrapper {
+  max-width: 960px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.fork-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.fork-supertitle {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-ultra);
+  color: var(--accent-ai);
+}
+
+.fork-scenario-title {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: var(--leading-tight);
+  margin-top: var(--space-xs);
+}
+
+.fork-context-box {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  line-height: var(--leading-relaxed);
+  background: rgba(255, 255, 255, 0.02);
+  border: var(--border-subtle);
+  padding: var(--space-md);
+  border-radius: var(--radius-sm);
+}
+
+/* ─── 3 Choice Option Columns ─── */
+.fork-options-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+
+.fork-option-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: rgba(10, 14, 22, 0.8);
+  border: var(--border-interactive);
+  border-radius: var(--radius-sm);
+  padding: var(--space-lg);
+  cursor: pointer;
+  outline: none;
+  text-align: left;
+  transition: transform var(--duration-fast) var(--ease-snappy),
+              border-color var(--duration-fast) var(--ease-snappy),
+              background-color var(--duration-fast) var(--ease-snappy);
+}
+
+.fork-option-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: translateY(-4px);
+}
+
+.fork-option-card.active {
+  border-color: var(--accent-ai);
+  background: rgba(139, 92, 246, 0.08);
+}
+
+.fork-card-shortlabel {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: var(--tracking-ultra);
+  color: var(--accent-ai);
+  margin-bottom: var(--space-xs);
+}
+
+.fork-card-title {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: var(--leading-tight);
+  margin-bottom: var(--space-sm);
+}
+
+.fork-card-desc {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 300;
+  color: var(--text-secondary);
+  line-height: var(--leading-normal);
+  margin-bottom: var(--space-md);
+}
+
+.fork-consequence-preview {
+  margin-top: auto;
+  padding-top: var(--space-sm);
+  border-top: var(--border-subtle);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+/* ─── DAG Decision Visualizer Box ─── */
+.dag-visualizer-box {
+  background: rgba(255, 255, 255, 0.02);
+  border: var(--border-subtle);
+  padding: var(--space-md);
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.dag-step-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.dag-arrow {
+  color: var(--accent-ai);
+}
+
+@media (max-width: 860px) {
+  .fork-options-grid {
+    grid-template-columns: 1fr;
+  }
+}
