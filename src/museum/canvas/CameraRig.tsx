@@ -8,6 +8,7 @@ import * as THREE from 'three';
 import gsap from 'gsap';
 import { useMuseumStore } from '@/engine/useMuseumStore';
 import { EXHIBITS_DATA } from '@/data/exhibits';
+import { globalCarouselRotation } from '../scenes/AtriumScene';
 
 export const CameraRig: React.FC = () => {
   const { camera } = useThree();
@@ -53,8 +54,16 @@ export const CameraRig: React.FC = () => {
       const idx = EXHIBITS_DATA.findIndex((e) => e.id === activeArtifactId);
       const total = EXHIBITS_DATA.length;
       const angle = (idx / total) * Math.PI * 2;
-      const ax = Math.sin(angle) * 12.5;
-      const az = Math.cos(angle) * 10.5;
+
+      // Calculate static local position on the ellipse
+      const localX = Math.sin(angle) * 12.5;
+      const localZ = Math.cos(angle) * 10.5;
+
+      // Apply 2D rotation matrix based on carousel rotation
+      const cosR = Math.cos(globalCarouselRotation);
+      const sinR = Math.sin(globalCarouselRotation);
+      const ax = localX * cosR + localZ * sinR;
+      const az = -localX * sinR + localZ * cosR;
 
       // Close macro inspection: camera positions in front of artifact
       destPos.set(ax * 0.72, 2.0, az * 0.72);

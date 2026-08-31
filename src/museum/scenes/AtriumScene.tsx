@@ -16,6 +16,8 @@ import { ArtificialLife } from '../artifacts/ArtificialLife';
 import { LunarColony } from '../artifacts/LunarColony';
 import { UnknownMonolith } from '../artifacts/UnknownMonolith';
 
+export let globalCarouselRotation = 0;
+
 export const AtriumScene: React.FC = () => {
   const currentSector = useMuseumStore((s) => s.currentSector);
   const timelineYear = useMuseumStore((s) => s.timelineYear);
@@ -60,6 +62,7 @@ export const AtriumScene: React.FC = () => {
     if (carouselGroupRef.current && currentSector === 'ATRIUM') {
       // Gentle orbital drift
       carouselGroupRef.current.rotation.y += delta * 0.015;
+      globalCarouselRotation = carouselGroupRef.current.rotation.y;
     }
   });
 
@@ -131,7 +134,7 @@ export const AtriumScene: React.FC = () => {
       </group>
 
       {/* ─── Orbital Exhibit Carousel ─── */}
-      <group ref={carouselGroupRef}>
+      <group ref={carouselGroupRef} name="CarouselGroup">
         {exhibitPositions.map(({ exhibit, position }) => {
           // Filter by category if set
           if (activeFilter !== 'all' && exhibit.category !== activeFilter) return null;
