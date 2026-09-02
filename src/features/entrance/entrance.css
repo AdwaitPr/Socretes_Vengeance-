@@ -28,6 +28,8 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-lg);
+  position: relative;
+  z-index: 10;
 }
 
 .entrance-institution-code {

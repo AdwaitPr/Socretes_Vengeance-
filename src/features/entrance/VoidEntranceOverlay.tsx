@@ -7,6 +7,7 @@ import { useMuseumStore } from '@/engine/useMuseumStore';
 import { MuseumButton } from '@/components/common/MuseumButton';
 import { ScrambleText } from '@/components/transitions/ScrambleText';
 import { synth } from '@/engine/useAudioEngine';
+import { WireThroat } from '@/components/originkit/wire-throat';
 import './entrance.css';
 
 export const VoidEntranceOverlay: React.FC = () => {
@@ -31,6 +32,7 @@ export const VoidEntranceOverlay: React.FC = () => {
 
   return (
     <div className="void-entrance-overlay">
+      <WireThroat />
       <div className="entrance-content">
         <div className="entrance-institution-code">
           <span className="code-bracket">[</span>
