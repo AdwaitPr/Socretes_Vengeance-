@@ -13,7 +13,7 @@
   padding: var(--space-xl);
   pointer-events: auto;
   text-align: center;
-  background: radial-gradient(circle at center, rgba(3, 4, 7, 0.4) 0%, rgba(3, 4, 7, 0.85) 100%);
+  background: radial-gradient(circle at center, rgba(3, 4, 7, 0.2) 0%, rgba(0, 0, 0, 1) 100%);
   animation: entrance-fade-in 1.2s var(--ease-cinematic);
 }
 
@@ -47,15 +47,16 @@
 
 .entrance-title {
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 7vw, 5.5rem);
+  font-size: clamp(1.5rem, 5vw, 4rem);
   font-weight: 800;
-  line-height: 0.95;
-  letter-spacing: -0.03em;
+  line-height: 1.1;
+  letter-spacing: 0.05em;
   color: var(--text-primary);
   text-transform: uppercase;
   display: flex;
   flex-direction: column;
   align-items: center;
+  opacity: 0.8;
 }
 
 .title-line {
@@ -63,9 +64,7 @@
 }
 
 .title-highlight {
-  background: linear-gradient(180deg, #ffffff 30%, #8e95a5 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--text-primary);
 }
 
 .entrance-tagline {

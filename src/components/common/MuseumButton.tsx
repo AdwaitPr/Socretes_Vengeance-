@@ -37,7 +37,7 @@ export const MuseumButton: React.FC<MuseumButtonProps> = ({
 
   return (
     <button
-      className={`museum-button ${variant === 'primary' ? 'museum-button-primary' : ''} ${className}`}
+      className={`museum-button ${variant === 'primary' ? 'museum-button-primary' : ''} ${variant === 'ghost' ? 'museum-button-ghost' : ''} ${className}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       {...props}

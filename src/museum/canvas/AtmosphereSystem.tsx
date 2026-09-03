@@ -71,6 +71,10 @@ export const AtmosphereSystem: React.FC = () => {
   const particleColor = useMemo(() => new THREE.Color(env.particleColor), [env.particleColor]);
   const fogColor = useMemo(() => new THREE.Color(env.ambientColor), [env.ambientColor]);
 
+  const currentSector = useMuseumStore((s) => s.currentSector);
+  const isVoid = currentSector === 'VOID' || currentSector === 'ENTRANCE';
+  const voidOpacity = isVoid ? 0.1 : 0.6;
+
   return (
     <>
       <color attach="background" args={[env.ambientColor]} />
@@ -87,7 +91,7 @@ export const AtmosphereSystem: React.FC = () => {
           size={qualityTier === 'ultra' ? 0.08 : 0.06}
           color={particleColor}
           transparent
-          opacity={0.6}
+          opacity={voidOpacity}
           blending={THREE.AdditiveBlending}
           depthWrite={false}
         />
