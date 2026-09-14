@@ -6,6 +6,7 @@ import React from 'react';
 import { useMuseumStore } from '@/engine/useMuseumStore';
 import { MuseumButton } from '@/components/common/MuseumButton';
 import { synth } from '@/engine/useAudioEngine';
+import { DataPixelArc } from '@/components/originkit/data-pixel-arc';
 import './entrance.css';
 
 export const VoidEntranceOverlay: React.FC = () => {
@@ -30,6 +31,7 @@ export const VoidEntranceOverlay: React.FC = () => {
 
   return (
     <div className="void-entrance-overlay">
+      <DataPixelArc style={{ position: "absolute", inset: 0, zIndex: -1, minWidth: 0, minHeight: 0 }} />
       <div className="entrance-content">
         <h1 className="entrance-title">
           <span className="title-line">THE MUSEUM</span>
